@@ -1,0 +1,66 @@
+.auth-page { background: var(--navy); padding: 20px; }
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--navy-800);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+}
+
+.auth-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Clash Display', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 28px;
+  justify-content: center;
+}
+
+.auth-title { font-size: 26px; color: var(--white); margin-bottom: 4px; }
+.auth-sub   { font-size: 14px; color: var(--slate); margin-bottom: 24px; }
+
+.auth-error {
+  background: rgba(239,68,68,0.1);
+  border: 1px solid rgba(239,68,68,0.25);
+  color: #F87171;
+  font-size: 13px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 16px;
+}
+
+.auth-form { display: flex; flex-direction: column; gap: 16px; }
+
+.role-toggle-wrap { display: flex; flex-direction: column; gap: 6px; }
+.role-toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  background: var(--navy);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 4px;
+}
+.role-btn {
+  padding: 8px;
+  border: none;
+  border-radius: 6px;
+  font-family: 'Satoshi', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: transparent;
+  color: var(--slate);
+}
+.role-btn.active { background: var(--amber); color: var(--navy); font-weight: 600; }
+.role-btn:not(.active):hover { color: var(--white); }
+
+.auth-footer { text-align: center; font-size: 13px; color: var(--slate); margin-top: 24px; }
+.auth-link   { color: var(--amber); font-weight: 500; }
+.auth-link:hover { color: var(--amber-light); }
