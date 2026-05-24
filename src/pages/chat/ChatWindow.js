@@ -24,10 +24,10 @@ export function ChatWindow() {
 
   const bottomRef    = useRef(null);
   const typingTimer  = useRef(null);
-  const messagesRef  = useRef(messages); // keep ref in sync for closure access
+  const messagesRef  = useRef(messages);
   messagesRef.current = messages;
 
-  // ── Load REST data once ──────────────────────────────────
+
   useEffect(() => {
     if (!conversationId) return;
     Promise.all([
@@ -42,7 +42,7 @@ export function ChatWindow() {
     }).finally(() => setLoading(false));
   }, [conversationId]);
 
-  // ── Join room + attach listeners when socket connects ────
+
   useEffect(() => {
     if (!connected || !conversationId) return;
 
@@ -61,13 +61,13 @@ export function ChatWindow() {
       });
     };
 
-    // ── join confirmation ────────────────────────────────
+
     const handleJoined = (data) => {
       console.log("✅ Joined room:", data);
       setJoined(true);
     };
 
-    // ── typing ───────────────────────────────────────────
+ 
     const handleTyping = (data) => {
       if (data.userId !== user?.id) {
         setIsTyping(true);
@@ -81,7 +81,7 @@ export function ChatWindow() {
       clearTimeout(typingTimer.current);
     };
 
-    // ── server errors ────────────────────────────────────
+
     const handleError = (err) => {
       console.error("Socket server error:", err);
     };
@@ -92,7 +92,7 @@ export function ChatWindow() {
     socket.on("user_stop_typing",  handleStopTyping);
     socket.on("error",             handleError);
 
-    // Cleanup listeners when leaving or socket changes
+
     return () => {
       socket.off("new_message",      handleNewMessage);
       socket.off("joined",           handleJoined);
@@ -103,12 +103,12 @@ export function ChatWindow() {
     };
   }, [connected, conversationId, user?.id]);
 
-  // ── Auto scroll ──────────────────────────────────────────
+
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isTyping]);
 
-  // ── Send message ─────────────────────────────────────────
+
   const handleSend = () => {
     if (!text.trim()) return;
     if (!connected) {
@@ -163,7 +163,7 @@ export function ChatWindow() {
           <div className="chat-header-info">
             <p className="chat-other-name">{conv?.otherParty?.name || "Chat"}</p>
             <p className="chat-job-label">
-              {conv?.job?.title}
+              {conv?.otherParty?.designation}
               {conv?.otherParty?.companyName ? ` · ${conv.otherParty.companyName}` : ""}
             </p>
           </div>
@@ -182,8 +182,6 @@ export function ChatWindow() {
           )}
 
           {messages.map((msg, i) => {
-            console.log("*****", msg);
-            console.log("88888user", user)
             const mine     = msg.sender?.id === user?.id;
             const showDate = i === 0 ||
               fmtDate(msg.createdAt) !== fmtDate(messages[i - 1].createdAt);

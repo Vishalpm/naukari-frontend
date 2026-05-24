@@ -10,6 +10,7 @@ import { ChatWindow } from "./pages/chat/ChatWindow";
 import { SeekerHome } from "./pages/seeker/SeekerHome";
 import { RecruiterDashboard } from "./pages/recruiter/RecruiterDashboard";
 import { PostJob } from "./pages/recruiter/PostJob";
+import { RecruiterProfile } from "./pages/recruiter/RecruiterProfile";
 
 function Spinner() {
   return (
@@ -62,6 +63,9 @@ function AppRoutes() {
       } />
       <Route path="/chat/:conversationId" element={
         <PrivateRoute><ChatWindow /></PrivateRoute>
+      } />
+      <Route path="/recruiter/profile" element={
+        <PrivateRoute role="recruiter"><RecruiterProfile /></PrivateRoute>
       } />
 
       <Route path="*" element={<Navigate to="/" replace />} />

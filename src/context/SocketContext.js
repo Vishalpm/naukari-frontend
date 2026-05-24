@@ -79,8 +79,6 @@ export function SocketProvider({ children }) {
     socketRef.current?.emit("stop_typing", { conversationId });
   };
 
-  // Instead of wrapping listeners, expose the raw socket
-  // so ChatWindow can add/remove listeners itself safely
   const getSocket = () => socketRef.current;
 
   return (

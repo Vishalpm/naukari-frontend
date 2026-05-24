@@ -98,7 +98,7 @@ export function ChatInbox() {
                         <span className="conv-time">{timeAgo(ts)}</span>
                       </div>
                     </div>
-                    <p className="conv-job">{conv.otherParty.companyName ? `${conv.otherParty.companyName} · ` : ""}{conv.job.title}</p>
+                    <p className="conv-job">{conv.otherParty.companyName ? `${conv.otherParty.companyName} · ` : ""}{conv.otherParty.designation}</p>
                     <p className={`conv-preview ${conv.unreadCount > 0 ? "unread" : ""}`}>
                       {conv.lastMessage
                         ? `${conv.lastMessage.sentByMe ? "You: " : ""}${conv.lastMessage.content}`
