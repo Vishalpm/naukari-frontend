@@ -22,7 +22,7 @@ function JobCard({ job, onMessage }) {
       <div className="job-card-top">
         <div className="job-company-logo">
           {job.recruiter?.companyLogo
-            ? <img src={`${process.env.REACT_APP_BACKEND_URL}/${job.recruiter.companyLogo}`} alt="" />
+            ? <img src={job.recruiter?.companyLogo} alt="" />
             : <span>{(job.recruiter?.companyName || "?").charAt(0)}</span>
           }
         </div>

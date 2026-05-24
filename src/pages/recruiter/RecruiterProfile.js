@@ -99,8 +99,12 @@ export function RecruiterProfile() {
           companyLocation:    p.companyLocation    || "",
           companyDescription: p.companyDescription || "",
         });
+        // if (p.companyLogo) {
+        //   setLogoPreview(`http://localhost:5000/${p.companyLogo}`);
+        // }
+
         if (p.companyLogo) {
-          setLogoPreview(`http://localhost:5000/${p.companyLogo}`);
+            setLogoPreview(p.companyLogo);
         }
       })
       .finally(() => setLoading(false));
@@ -111,7 +115,7 @@ export function RecruiterProfile() {
   const handleLogoChange = (e) => {
     const file = e.target.files[0];
     if (!file) return;
-    setLogoPreview(URL.createObjectURL(file));
+    setLogoPreview(profile.companyLogo || null);
   };
 
   // ── Save ─────────────────────────────────────────────────
